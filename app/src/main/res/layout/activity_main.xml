@@ -11,6 +11,10 @@
         <variable
             name="SecondName"
             type="String" />
+        
+        <variable
+            name="viewmodel"
+            type="com.sogou.babel.gaudi.MainViewModel" />
 
     </data>
 
@@ -33,11 +37,67 @@
             android:id="@+id/secondNameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="48dp"
             android:text="@{SecondName}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/firstNameView" />
+
+        <TextView
+            android:id="@+id/vmFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="36dp"
+            android:text="@{viewmodel.firstName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/vmSecondName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="12dp"
+            android:text="@{viewmodel.secondName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vmFirstName" />
+
+        <Button
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="16dp"
+            android:text="@{viewmodel.popularity.name()}"
+            android:onClick="@{() -> viewmodel.onLike()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vmSecondName" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="28dp"
+            android:text="SimpleBind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondNameView" />
+
+        <TextView
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewmodel.likeTimes)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
