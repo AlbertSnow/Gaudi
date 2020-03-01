@@ -1,7 +1,7 @@
 package com.sogou.babel.gaudi
 
 import android.app.Application
-import com.albert.snow.baselibrary.isDebug
+import com.albert.snow.baselibrary.isForbiddenLog
 
 lateinit var application : MyApplication
 class MyApplication : Application() {
@@ -12,7 +12,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        isDebug = BuildConfig.DEBUG
+        isForbiddenLog = !BuildConfig.DEBUG
     }
 
 }
