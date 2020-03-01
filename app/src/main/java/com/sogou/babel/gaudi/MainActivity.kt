@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val bingVar = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        bingVar.lifecycleOwner = this
+//        bingVar.lifecycleOwner = this
         bingVar.firstName = "Albert"
         bingVar.secondName = "Snow"
         bingVar.viewmodel = viewModel
