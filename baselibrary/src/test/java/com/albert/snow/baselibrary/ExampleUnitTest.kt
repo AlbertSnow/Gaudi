@@ -1,4 +1,4 @@
-`package com.albert.snow.baselibrary
+package com.albert.snow.baselibrary
 
 import org.junit.Test
 
