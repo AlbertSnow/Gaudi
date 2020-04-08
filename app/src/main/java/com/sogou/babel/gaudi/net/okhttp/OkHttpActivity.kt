@@ -5,11 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.albert.snow.baselibrary.AlbertLog
 import com.sogou.babel.gaudi.R
-import com.sogou.babel.gaudi.retrofit.data.Retrofits
-
 import kotlinx.android.synthetic.main.activity_ok_http.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
@@ -24,12 +20,9 @@ class OkHttpActivity : AppCompatActivity(), Callback {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-//            requestOkHttp()
-//            fab.requestLayout()
-//            fab.invalidate()
-            GlobalScope.launch {
-                Retrofits.MyRetrofits()
-            }
+            requestOkHttp()
+            fab.requestLayout()
+            fab.invalidate()
         }
     }
 

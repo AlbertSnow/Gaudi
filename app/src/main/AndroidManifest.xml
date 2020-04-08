@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".net.okhttp.OkHttpActivity"
+            android:name=".retrofit.RetrofitActivity"
             android:label="@string/title_activity_ok_http"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
