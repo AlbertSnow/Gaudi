@@ -3,9 +3,11 @@ package com.sogou.babel.gaudi
 import android.app.Application
 import android.content.Context
 import com.albert.snow.baselibrary.isForbiddenLog
+import com.sogou.babel.gaudi.plug.DexPathListInvocationHandler
 import com.sogou.babel.gaudi.plug.PlugClassLoader2
 import com.sogou.babel.gaudi.plug.PluginUtil
 import java.io.File
+import java.lang.reflect.Proxy
 
 
 lateinit var application : MyApplication
@@ -22,9 +24,14 @@ class MyApplication : Application() {
 
 
     override fun attachBaseContext(base: Context) {
-//        copySoFile(base)
-        val packageInfo = PluginUtil.getField(base, "mPackageInfo");
-//        val classLoader = PlugClassLoader("/data/app/com.sogou.babel.gaudi-2/base.apk", base.classLoader)
+        heavyPlug(base)
+        super.attachBaseContext(base)
+    }
+
+    private fun heavyPlug(base: Context) {
+        //        copySoFile(base)
+        val packageInfo = PluginUtil.getFieldValue(base, "mPackageInfo");
+        //        val classLoader = PlugClassLoader("/data/app/com.sogou.babel.gaudi-2/base.apk", base.classLoader)
 
         val nativeLibraryDir: String = base.filesDir.absolutePath
         val classLoader = PlugClassLoader2(
@@ -34,13 +41,13 @@ class MyApplication : Application() {
             base.classLoader.parent
         )
 
-        PluginUtil.setFieldUnsafe(
+        PluginUtil.setFieldValue(
             packageInfo,
             "mClassLoader",
             classLoader
         )
 
-//        PluginUtil.setField(packageInfo, "mClassLoader", classLoader)
+        //        PluginUtil.setField(packageInfo, "mClassLoader", classLoader)
         Thread.currentThread().contextClassLoader = classLoader
 
 
@@ -65,7 +72,7 @@ class MyApplication : Application() {
     }
 
     private fun reflectChangeValue(packageInfo: Any?, customPath: String) {
-        val pathClassLoader = PluginUtil.getField(packageInfo, "mClassLoader")
+        val pathClassLoader = PluginUtil.getFieldValue(packageInfo, "mClassLoader")
 
         val pathListFiled = pathClassLoader.javaClass.superclass?.getDeclaredField("pathList")
         pathListFiled?.isAccessible = true
