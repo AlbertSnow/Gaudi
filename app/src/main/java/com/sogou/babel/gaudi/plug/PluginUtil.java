@@ -1,6 +1,9 @@
 package com.sogou.babel.gaudi.plug;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.lang.reflect.Field;
+import java.util.Collection;
 
 public class PluginUtil {
 
@@ -28,6 +31,23 @@ public class PluginUtil {
 			e.printStackTrace();
 		}
 		return object;
+	}
+
+	public static void addNativePath() {
+
+	}
+
+	public static Class getCollectionTye() {
+		return Collection.class;
+	}
+
+
+	public static void setFieldUnsafe(Object paramClass, String paramString,
+														 Object newClass) throws NoSuchFieldException, IllegalAccessException, IllegalArgumentException {
+		Field field = null;
+		field = paramClass.getClass().getDeclaredField(paramString);
+		field.setAccessible(true);
+		field.set(paramClass, newClass);
 	}
 
 
