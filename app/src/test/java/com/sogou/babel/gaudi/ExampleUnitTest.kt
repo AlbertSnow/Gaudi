@@ -21,4 +21,21 @@ class ExampleUnitTest {
         val var1 = AtomicInteger(1)
         val isSuccess = var1.compareAndSet(1, 2)
     }
+
+    @Test
+    fun testLoop() {
+        val arrays = arrayOf(1, 2, 3, 4, 5, 6)
+        run breaking@ {
+            arrays.forEach {
+                if (it == 3) {
+                    return@breaking
+                }
+                print("item: $it")
+            }
+        }
+
+
+        print ("is OVer")
+    }
+
 }
